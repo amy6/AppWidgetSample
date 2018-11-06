@@ -1,8 +1,10 @@
 package com.example.mahima.appwidgetsample;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.RemoteViews;
 
@@ -35,6 +37,15 @@ public class NewAppWidget extends AppWidgetProvider {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putInt(COUNT_KEY + appWidgetId, count);
         editor.apply();
+
+        Intent intent = new Intent(context, NewAppWidget.class);
+        intent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        int[] appWidgetIds = new int[]{appWidgetId};
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, appWidgetId,
+                intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        views.setOnClickPendingIntent(R.id.button_update, pendingIntent);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
