@@ -32,4 +32,33 @@
 
     </LinearLayout>
 
+
+    <LinearLayout
+        android:id="@+id/section_update"
+        style="@style/AppWidgetSection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/section_id"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/appwidget_update_label"
+            style="@style/AppWidgetLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:text="@string/last_updated" />
+
+        <TextView
+            android:id="@+id/appwidget_update"
+            style="@style/AppWidgetText"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/date_count_format" />
+
+    </LinearLayout>
+
 </RelativeLayout>
